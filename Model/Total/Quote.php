@@ -48,9 +48,7 @@ class Quote extends AbstractTotal
             return $this;
         }
 
-        if($quote->getOrderFrom() != 'Allegro') {
-            $this->_addCodFee($quote, $total);
-        }
+        $this->_addCodFee($quote, $total);
 
         return $this;
     }
@@ -93,6 +91,10 @@ class Quote extends AbstractTotal
 
     private function _getBaseCodFee(MagentoQuote $quote)
     {
+        if($quote->getOrderFrom() == 'Allegro') {
+            return 0;
+        }
+
         $shippingOrigin = $this->helper->getShippingOriginCountry();
         $shippingCountry = $quote->getShippingAddress()->getCountry();
         $total = $quote->getBaseSubtotal();
