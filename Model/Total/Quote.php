@@ -48,7 +48,9 @@ class Quote extends AbstractTotal
             return $this;
         }
 
-        $this->_addCodFee($quote, $total);
+        if($quote->getOrderFrom() != 'Allegro') {
+            $this->_addCodFee($quote, $total);
+        }
 
         return $this;
     }
