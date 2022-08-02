@@ -284,7 +284,11 @@ class Config
      */
     public function getDisallowedShippingMethods($store = null)
     {
-        return explode(',', $this->_getConfigValue(self::XML_PATH_PHOENIX_CASHONDELIVERY_DISALLOW_SHIPPING_METHODS, $store));
+        if($value = $this->_getConfigValue(self::XML_PATH_PHOENIX_CASHONDELIVERY_DISALLOW_SHIPPING_METHODS, $store)) {
+            return explode(',', $value);
+        } else {
+            return [];
+        }
     }
     /**
      * Get the tax class for calculation of taxes

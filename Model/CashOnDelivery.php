@@ -76,10 +76,16 @@ class CashOnDelivery extends \Magento\Payment\Model\Method\AbstractMethod
 
     }
 
+    /**
+     * @return array|false|string[]
+     */
     private function getDisallowedShippingMethods()
     {
-        $disallowedShippingMethods = $this->getConfigData('disallowedshippingmethods');
+        if($disallowedShippingMethods = $this->getConfigData('disallowedshippingmethods')) {
+            return explode(',', $disallowedShippingMethods);
+        } else {
+            return [];
+        }
 
-        return explode(',', $disallowedShippingMethods);
     }
 }
