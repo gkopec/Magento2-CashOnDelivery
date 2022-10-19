@@ -31,7 +31,7 @@ define(
 
         quote.paymentMethod.subscribe(function (newValue) {
             var oldMethod = window.checkoutConfig.payment.phoenix_cashondelivery.previousMethod;
-            var newMethod = newValue.method;
+            var newMethod = newValue ? newValue.method : null;
             if (oldMethod === 'phoenix_cashondelivery' || newMethod === 'phoenix_cashondelivery') {
                 var paymentMethod = quote.paymentMethod();
                 if (paymentMethod.title) {
